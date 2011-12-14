@@ -3,7 +3,7 @@ class adaptec {
   file { "/opt/tribily/bin/adaptec_status.sh":
     ensure  => present,
     require => [File["/opt/tribily/bin"], Package["arcconf"]],
-    source  => "puppet:///adaptec_status.sh",
+    source  => "puppet:///adaptec/adaptec_status.sh",
     owner  => "root", 
     group  => "root", 
     mode  => "0655",    
