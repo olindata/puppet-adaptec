@@ -12,7 +12,7 @@ class adaptec {
   cron { "tribily-adaptec":
     command  => "sh /opt/tribily/bin/adaptec_status.sh > /dev/null 2>&1",
     user  => "root", 
-    minute  => "*/4",
+    minute  => "*/5",
     require  => File["/opt/tribily/bin/adaptec_status.sh"],
   
   }
