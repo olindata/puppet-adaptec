@@ -8,7 +8,9 @@ class adaptec {
     group  => "root", 
     mode  => "0655",    
   }
-  
+
+	# CronJob for Monitoring
+	#  
   cron { "tribily-adaptec":
     command  => "sh /opt/tribily/bin/adaptec_status.sh > /dev/null 2>&1",
     user  => "root", 
