@@ -26,7 +26,7 @@ class adaptec {
   exec {  
     "install dns UserParams" :
       command =>
-			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$mytimestamp",
+			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$mytimestamp; sed -i '/^UserParameter=adpt./d' /etc/zabbix/zabbix_agentd.conf",
       path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
   }
 
