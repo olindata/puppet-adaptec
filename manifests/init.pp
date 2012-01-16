@@ -19,7 +19,7 @@ class adaptec {
 #		ensure	=> absent,
 #  }
 
-  $mytimestamp = inline_template("<%= Time.new.strftime('%Y%m%d_%H%M%S' %>")
+  $mytimestamp = inline_template("<%= Time.new.strftime('%Y%m%d_%H%M%S') %>")
 
 	# Re-install new zabbix_agentd.conf
 	#
