@@ -1,3 +1,7 @@
+
+# For Tribily Role - Adaptec Extended Monitoring 
+# Don't remove the above line if you're installing via puppet-tribily-adaptec module
+
 UserParameter=adpt.conmod,/opt/tribily/bin/adaptec_status.sh adpt.conmod
 UserParameter=adpt.temp,/opt/tribily/bin/adaptec_status.sh adpt.temp
 UserParameter=adpt.ldevon,/opt/tribily/bin/adaptec_status.sh adpt.ldevon

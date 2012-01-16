@@ -19,18 +19,27 @@ class adaptec {
 #		ensure	=> absent,
 #  }
 
+	# For config backup datetime
   $mytimestamp = inline_template("<%= Time.new.strftime('%Y%m%d_%H%M%S') %>")
 
-	# Re-install new zabbix_agentd.conf
+	# Backup old zabbix_agentd.conf and clean current with any UserParam modification for adpt
 	#
   exec {  
-    "install dns UserParams" :
+    "Backing up existing tribily agent configuration":
       command =>
 			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$mytimestamp; sed -i '/^UserParameter=adpt./d' /etc/zabbix/zabbix_agentd.conf",
+			unless	=> "grep -i 'Tribily Role - Adaptec Extended Monitoring' /etc/zabbix/zabbix_agentd.conf",
       path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
   }
 
 
-			#"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$::mytimestamp; sed -i '/^UserParameter=adpt./d' /etc/zabbix/zabbix_agentd.conf",
+	# Add new user Params
+	concatfilepart {
+		"install dns Userparams":
+			ensure	=> present,
+			file	=>	"/etc/zabbix/zabbix_agentd.conf",
+			source	=> template("adaptec/UserParams.erb"),
+	}
+
 
 }
