@@ -19,15 +19,16 @@ class adaptec {
 #		ensure	=> absent,
 #  }
 
-#	# Re-install new zabbix_agentd.conf
-#	#
-#  exec {  
-#    "install dns UserParams" :
-#      command =>
-#			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$::mytimestamp; sed -i '/^UserParameter=adpt./d' /etc/zabbix/zabbix_agentd.conf",
-#      path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
-#  }
+	# Re-install new zabbix_agentd.conf
+	#
+  exec {  
+    "install dns UserParams" :
+      command =>
+			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$::mytimestamp",
+      path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
+  }
 
 
+			#"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$::mytimestamp; sed -i '/^UserParameter=adpt./d' /etc/zabbix/zabbix_agentd.conf",
 
 }
