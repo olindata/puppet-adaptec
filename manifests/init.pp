@@ -19,12 +19,14 @@ class adaptec {
 #		ensure	=> absent,
 #  }
 
+  $mytimestamp = inline_template("<%= Time.new.strftime('%Y%m%d_%H%M%S' %>")
+
 	# Re-install new zabbix_agentd.conf
 	#
   exec {  
     "install dns UserParams" :
       command =>
-			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$::mytimestamp",
+			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$mytimestamp",
       path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
   }
 
