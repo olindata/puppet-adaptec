@@ -34,11 +34,10 @@ class adaptec {
 
 
 	# Add new user Params
-	concatfilepart {
+	addparams {
 		"install dns Userparams":
 			ensure	=> present,
 			file	=>	"/etc/zabbix/zabbix_agentd.conf",
-			source	=> template("adaptec/UserParams.erb"),
 	}
 
 
