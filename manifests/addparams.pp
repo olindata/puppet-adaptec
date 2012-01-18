@@ -19,14 +19,22 @@ define adaptec::addparams (
 		    owner  => "root", 
 		    group  => "root", 
 		  }
-		 # ensure that the zabbix-agent reloads
-		  service { "zabbix-agent":
-		    enable      => true,
-		    ensure      => "running",
-		    status      => "/etc/init.d/zabbix-agent status",
-		    hasrestart  => true,
-		    hasstatus   => false,
-		    subscribe   => File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"], 
+		# ensure that the zabbix-agent reloads
+		# Enable below code if service zabbix-agent is not defined elsewhere in your puppet code	 	
+#		  service { "zabbix-agent":
+#		    enable      => true,
+#		    ensure      => "running",
+#		    status      => "/etc/init.d/zabbix-agent status",
+#		    hasrestart  => true,
+#		    hasstatus   => false,
+#		    subscribe   => File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"], 
+#			}
+		# If you do, then this work around for reload agent works. If you have a restart call in zabbix-agent
+			exec {
+				"Refreshing Zabbix Agent":
+					command	=> "/etc/init.d/zabbix-agent restart",
+					subscribe	=> File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"],
+					path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
 			}
 		}
 		'absent': {}
