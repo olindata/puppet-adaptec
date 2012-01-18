@@ -3,7 +3,7 @@
 # Organization: Tribily
 
 define adaptec::addparams (
-  $ensure = present,
+  $ensure = present
 ) {
 
   # Directory containing file parts
