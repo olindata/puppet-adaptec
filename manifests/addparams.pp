@@ -2,39 +2,27 @@
 # Author: krish
 # Organization: Tribily
 
-define addparams (
+define adaptec::addparams (
   $ensure = present,
-  $file
 ) {
 
-  # Is config available
-  if defined(File[$file]) {
-    debug("Found Zabbix agent configuration ${file}.")
-  } else {
-    file {$file:
-      debug("Zabbix agent configuration file ${file} not found.")
-    }
-  }
-
   # Directory containing file parts
-  $dir = "/etc/zabbix/"
+  $dir = "/etc/zabbix/conf.d"
 
-  file { "/etc/zabbix/zabbixDNSuserparams":
-    ensure  => present,
-    source  => template("adaptec/UserParams.erb"),
-    owner  => "root", 
-    group  => "root", 
-  }
-	
-
-  case $ensure {
+	case $ensure {
 		'present': {
-    	exec { "UserParam Configuration":
-      	command => "cat /etc/zabbix/zabbixDNSuserparams >> ${file}",
-      	refreshonly => true,
-      	subscribe => File[$dir],
-      	before => File[$file],
-    	}
+			file { "/etc/zabbix/conf.d":
+				ensure	=> directory,
+				owner	=> "root",
+				group	=> "root",
+			}
+		  file { "/etc/zabbix/conf.d/tribily_dns_userparams.erb":
+		    ensure  => present,
+		    source  => template("adaptec/userparams.erb"),
+		    owner  => "root", 
+		    group  => "root", 
+		  }
+		}
 		'absent': {}
   }
 
