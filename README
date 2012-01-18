@@ -5,4 +5,4 @@ Module has gone through big changes - Must update for all Users
 
 1. Need to manually include "Include=/etc/zabbix/conf.d" to your /etc/zabbix/zabbix_agentd.conf
 2. Manually remove your cronjob for this script if you were using earlier version - runs via UserParameters now, more stable this way.
-
+3. Don't forget to set up proper sudo rights. Refer - http://tribily.com/doc/monitoring-adaptec-raid-controller-using-tribily-monitoring-systems
