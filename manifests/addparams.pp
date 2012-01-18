@@ -19,8 +19,16 @@ define adaptec::addparams (
 		    owner  => "root", 
 		    group  => "root", 
 		  }
+		 # ensure that the zabbix-agent reloads
+		  service { "zabbix-agent":
+		    enable      => true,
+		    ensure      => "running",
+		    status      => "/etc/init.d/zabbix-agent status",
+		    hasrestart  => true,
+		    hasstatus   => false,
+		    subscribe   => File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"], 
+			}
 		}
 		'absent': {}
   }
-
 }
