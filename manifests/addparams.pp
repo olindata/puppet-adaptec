@@ -34,6 +34,7 @@ define adaptec::addparams (
 				"Refreshing Zabbix Agent":
 					command	=> "/etc/init.d/zabbix-agent restart",
 					subscribe	=> File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"],
+					refreshonly	=> true,
 					path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
 			}
 		}
