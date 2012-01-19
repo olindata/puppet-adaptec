@@ -18,7 +18,7 @@ class adaptec {
     "Backing up existing tribily agent configuration":
       command =>
 			"cp /etc/zabbix/zabbix_agentd.conf /etc/zabbix/zabbix_agentd.conf.bkup.$mytimestamp",
-			onlyif	=> "grep -i 'Tribily Role - Adaptec Extended Monitoring' /etc/zabbix/zabbix_agentd.conf",
+			onlyif	=> "grep -i 'UserParameter=adpt' /etc/zabbix/zabbix_agentd.conf",
       path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
   }
 
@@ -27,7 +27,7 @@ class adaptec {
     "Cleaning old Adaptec config":
       command =>
 			"sed -i '/^UserParameter=adpt./d' /etc/zabbix/zabbix_agentd.conf",
-			onlyif	=> "grep -i 'Tribily Role - Adaptec Extended Monitoring' /etc/zabbix/zabbix_agentd.conf",
+			onlyif	=> "grep -i 'UserParameter=adpt' /etc/zabbix/zabbix_agentd.conf",
       path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
 			require	=> Exec["Backing up existing tribily agent configuration"],
   }

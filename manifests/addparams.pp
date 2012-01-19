@@ -13,7 +13,7 @@ define adaptec::addparams (
 				owner	=> "root",
 				group	=> "root",
 			}
-		  file { "/etc/zabbix/conf.d/tribily_dns_userparams.erb":
+		  file { "/etc/zabbix/conf.d/tribily_dns_userparams":
 		    ensure  => present,
 		    content  => template("adaptec/userparams.erb"),
 		    owner  => "root", 
@@ -27,13 +27,13 @@ define adaptec::addparams (
 #		    status      => "/etc/init.d/zabbix-agent status",
 #		    hasrestart  => true,
 #		    hasstatus   => false,
-#		    subscribe   => File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"], 
+#		    subscribe   => File["/etc/zabbix/conf.d/tribily_dns_userparams"], 
 #			}
 		# If you do, then this work around for reload agent works. If you have a restart call in zabbix-agent
 			exec {
 				"Refreshing Zabbix Agent":
 					command	=> "/etc/init.d/zabbix-agent restart",
-					subscribe	=> File["/etc/zabbix/conf.d/tribily_dns_userparams.erb"],
+					subscribe	=> File["/etc/zabbix/conf.d/tribily_dns_userparams"],
 					refreshonly	=> true,
 					path => ["/bin", "/usr/bin", "/sbin", "/usr/sbin"],
 			}
