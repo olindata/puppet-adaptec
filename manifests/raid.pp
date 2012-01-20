@@ -23,6 +23,11 @@ class adaptec::raid {
   package { 
     ["libstdc++5"]: ensure => "present" 
   }
+  
+  # ensure that the kernel module to monitor the hard drives is loaded
+  kern_module { "sg": 
+    ensure => present 
+  }
 
   # install Adaptec RAID controller software
   # arcconf package from http://hwraid.le-vert.net/wiki/DebianPackages
@@ -36,8 +41,6 @@ class adaptec::raid {
 
   # TODO
   # exec { "smartmon-enable":
-  #       command => "/usr/bin/vim-addons -w install puppet; /usr/bin/vim-addons install puppet",
-  #   unless  => "/usr/bin/vim-addons | grep puppet | grep installed"
   # }
 
   # require smart package
