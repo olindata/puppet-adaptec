@@ -3,7 +3,7 @@
 class adaptec::monitoring::tribily {
   
   tribily::agent::userparams{ 'adaptec':
-    file_src      => 'puppet:///adaptec/monitoring/tribily.conf',
+    source      => 'puppet:///adaptec/monitoring/tribily.conf',
   }
 
 }
