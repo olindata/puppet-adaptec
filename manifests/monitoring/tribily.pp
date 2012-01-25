@@ -6,4 +6,9 @@ class adaptec::monitoring::tribily {
     source      => 'puppet:///adaptec/monitoring/tribily.conf',
   }
 
+  file { '/opt/tribily/bin/adaptec_status.sh':
+    ensure => present,
+    source => 'puppet:///adaptec/opt/tribily/adaptec_status.sh',
+  }
+
 }
