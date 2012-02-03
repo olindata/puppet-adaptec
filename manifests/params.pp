@@ -1,8 +1,8 @@
 class adaptec::params {
-  
+
   $monitoring = $::adaptec_monitoring ? {
-    ''      => 'false',
+    ''      => false,
     default => $::adaptec_monitoring
   }
-  
+
 }
