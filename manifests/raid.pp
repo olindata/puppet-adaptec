@@ -21,7 +21,7 @@ class adaptec::raid {
 
   package { 'arcconf':
     ensure  => latest,
-    require => Class[apt::repo::hwraid_le_vert]
+    require => Class['s_apt::hwraid']
   }
 
   # TODO
