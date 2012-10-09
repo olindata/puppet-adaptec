@@ -17,7 +17,7 @@ class adaptec::raid {
   # install Adaptec RAID controller software
   # arcconf package from http://hwraid.le-vert.net/wiki/DebianPackages
   # they have a repo, but it's unsigned so we use the deb directly
-  include apt::repo::hwraid_le_vert
+  include s_apt::hwraid
 
   package { 'arcconf':
     ensure  => latest,
