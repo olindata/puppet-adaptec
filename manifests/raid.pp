@@ -2,13 +2,6 @@
 
 class adaptec::raid {
 
-  include adaptec::params
-
-  case $adaptec::params::monitoring {
-    'tribily': { include adaptec::monitoring::tribily }
-    false:     { notice 'no monitoring for adaptec::raid' }
-  }
-
   # ensure that the kernel module to monitor the hard drives is loaded
   kern_module { 'sg':
     ensure => present
